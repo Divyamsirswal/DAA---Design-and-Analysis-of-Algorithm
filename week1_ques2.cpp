@@ -107,7 +107,9 @@ void solve(){
     //     }
     //     comp++;
     // }
-
+    // if(start>end){
+    //   cout << "Not Present " << comp << endl;
+    // } 
     // cout << "Total comparison : " << comp << endl;
 
 
