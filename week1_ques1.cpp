@@ -85,6 +85,20 @@ void solve(){
         cout << "Not present " << idx << endl;
     }
 
+    //if you want to do comparisons so use simple loop for that
+    // ll comp = 0;
+    // rep(i,0,n){
+    //     comp++;
+    //     if(v[i]==key){
+    //         cout << "Present " << i+1 << endl;
+    //         break;
+    //     }
+    // }
+
+    // if(comp>n){
+    //     cout << "Not Present " << comp << endl;
+    // }
+
 }
 
 int main(){
