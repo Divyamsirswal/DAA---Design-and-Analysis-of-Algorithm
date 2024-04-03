@@ -23,6 +23,9 @@ const int N = 20000005;
 const int MOD = 1e9 + 7;
 const int INF = 1e9;
 
+int comp = 0;
+int inv = 0;
+
 void merge(vi &v,int mid,int start,int end){
     int left = mid - start + 1;
     int right = end - mid;
@@ -39,13 +42,16 @@ void merge(vi &v,int mid,int start,int end){
     }
     i=0,j=0,k=start;
 
+
     while(i<left && j<right){
+        comp++;
         if(l[i]<r[j]){
             v[k++]=l[i];
             i++;
         }else{
             v[k++]=r[j];
             j++;
+            inv+=(mid-start+1)-i;
         }
     }
     while(i<left){
@@ -78,11 +84,15 @@ auto solve = [](){
     int start = 0;
     int end = n - 1;
 
+    comp = 0;
+    inv = 0;
+
     mergeSort(v,start,end);
 
     rep(i,0,n) cout << v[i] << " ";
-
     cout << endl;
+
+    cout << comp << " " << inv << endl;
 };
 
 int32_t main(){
