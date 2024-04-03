@@ -1,122 +1,64 @@
-/* Divyam Sirswal */
+//Divyam Sirswal ----> keep pushing the limits
 
 #include<bits/stdc++.h>
 using namespace std;
-using ll = long long;
-using lld = long double;
-using ull = unsigned long long;
-using mi = unordered_map<ll,ll>;
-using pi = pair<ll,ll>;
-void __print(int x) {cerr << x;}
-void __print(long x) {cerr << x;}
-void __print(long long x) {cerr << x;}
-void __print(unsigned x) {cerr << x;}
-void __print(unsigned long x) {cerr << x;}
-void __print(unsigned long long x) {cerr << x;}
-void __print(float x) {cerr << x;}
-void __print(double x) {cerr << x;}
-void __print(long double x) {cerr << x;}
-void __print(char x) {cerr << '\'' << x << '\'';}
-void __print(const char *x) {cerr << '\"' << x << '\"';}
-void __print(const string &x) {cerr << '\"' << x << '\"';}
-void __print(bool x) {cerr << (x ? "true" : "false");}
 
-template<typename T, typename V>
-void __print(const pair<T, V> &x) {cerr << '{'; __print(x.first); cerr << ','; __print(x.second); cerr << '}';}
-template<typename T>
-void __print(const T &x) {int f = 0; cerr << '{'; for (auto &i: x) cerr << (f++ ? "," : ""), __print(i); cerr << "}";}
-void _print() {cerr << "]\n";}
-template <typename T, typename... V>
-void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v...);}
-#ifndef ONLINE_JUDGE
-#define debug(x...) cerr << "[" << #x << "] = ["; _print(x)
-#else
-#define debug(x...)
-#endif
-#define vvi(x,y) vector<vector<ll>>(x,vector<ll>(y));
-#define rep(i,s,e) for(long long int i=s;i<e;i++)
-#define repi(i,s,e) for(long long int i=s;i<=e;i++)
-#define repr(i,e,s) for(long long int i=e-1;i>=s;i--)
-#define fora(a) for(auto u:a)
-#define ld long double
-#define all(a) (a).begin(), (a).end()
-#define fastio() ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL)
-#define nline "\n"
-#define mp make_pair
-#define ppb pop_back
-#define pb push_back
-#define mp make_pair
+#define int long long int
+#define vi vector<int>
+#define endl "\n"
+#define all(x) x.begin(),x.end()
+#define pi pair<int,int>
+#define umpi unordered_map<int,int>
+#define umpc unordered_map<char,int>
+#define vvi(x,y) vector<vector<ll>>(x,vector<ll>(y))
+#define rep(i,s,e) for(int i=s;i<e;i++)
+#define repi(i,s,e) for(int i=s;i<=e;i++)
+#define repr(i,e,s) for(int i=e-1;i>=s;i--)
 #define ff first
 #define ss second
-#define PI 3.141592653589793238462
-#define set_bits __builtin_popcountll
-#define sz(x) ((int)(x).size())
-typedef vector<ll> vl;
-typedef vector<int> vi;
-typedef vector<char> vc;
-typedef vector<string> vs;
-typedef vector<int>::iterator vit;
-typedef set<int> si;
-typedef map<int, int> mii;
-void yes() { cout<<"YES\n"; }
-void no() { cout<<"NO\n"; }
-void google(int t) {cout << "Case #" << t << ": ";}
-const ll N = 2000000;
-const ll MOD = 1e9 + 7;
-const ll INF = 1e9;
-ll gcd(ll a, ll b) {if (b > a) {return gcd(b, a);} if (b == 0) {return a;} return gcd(b, a % b);}
+#define pb push_back
+#define divyam() ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL)
 
-void solve(){
-    ll n;
+const int N = 20000005;
+const int MOD = 1e9 + 7;
+const int INF = 1e9;
+
+
+auto solve = [](){
+    int n;
     cin>>n;
 
     vi v(n);
+
     rep(i,0,n) cin>>v[i];
 
-    ll key;
-    cin>>key;
+    int target;
+    cin>>target;
 
-    ll sz = sqrt(n);
+    int start = 0;
+    int end = sqrt(n);
 
-    if(n==2){
-        if(v[0]==key || v[1]==key){
-            cout << "Present" << endl;
+    while(v[end] < target && start < n){
+        start = end;
+        end += sqrt(n);
+        if(end > n-1) end = n-1;
+    }
+
+    for(int i=start;i<=end;i++){
+        if(v[i]==target){
+            cout << i << endl;
             return;
         }
     }
+    cout << -1 << endl;
+};
 
-    if(n==3){
-        if(v[0]== key || v[1]==key || v[2]==key){
-            cout << "Present" << endl;
-            return;
-        }
-    }
+int32_t main(){
+    divyam();
 
-    ll prev=0;
-    ll curr=0;
+    int tt=1;
+    // cin>>tt;
 
-    while(curr<n && v[curr]<key){
-        prev=curr;
-        curr += sz;
-    }
-
-    for (int i = prev; i < min(curr, n); ++i) {
-        if (v[i] == key) {
-            cout << "Present" << endl;
-            return;
-        }
-    }
-
-    cout << "Not Present" << endl;
-}
-
-int main(){
-    fastio();
-
-    ll tt=1;
-    cin>>tt;
-
-    while(tt--){
-        solve(); //don't worry i dont care about rating keep grinding
-    }
+    for(int i=0;i<tt;i++)
+        solve();
 }
